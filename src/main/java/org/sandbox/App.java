@@ -25,6 +25,10 @@ public class App {
 
         JavaRDD<Double> myRdd = sc.parallelize(inputData);
 
+        double result = myRdd.reduce((x1, x2) -> x1 + x2);
+
+        System.out.println(result);
+
         sc.close();
     }
 }
