@@ -3,6 +3,7 @@ package org.sandbox;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,6 +32,14 @@ public class App {
         JavaRDD<Double> sqrtRdd = myRdd.map(x1 -> Math.sqrt(x1));
 
         sqrtRdd.foreach(val -> System.out.println(val));
+
+        // count elements
+        System.out.println(sqrtRdd.count());
+        // using map
+        JavaRDD<Long> singleRdd = sqrtRdd.map(val -> 1L);
+        long count = singleRdd.reduce((x, y) -> x + y);
+
+        System.out.println(count);
 
         sc.close();
     }
