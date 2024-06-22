@@ -3,7 +3,6 @@ package org.sandbox;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,6 +29,8 @@ public class App {
         System.out.println(result);
 
         JavaRDD<Double> sqrtRdd = myRdd.map(x1 -> Math.sqrt(x1));
+
+        sqrtRdd.foreach(val -> System.out.println(val));
 
         sc.close();
     }
