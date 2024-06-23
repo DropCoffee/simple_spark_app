@@ -39,6 +39,9 @@ public class App {
         JavaRDD<Long> singleRdd = sqrtRdd.map(val -> 1L);
         long count = singleRdd.reduce((x, y) -> x + y);
 
+        // problem with ser
+        singleRdd.collect().forEach(System.out::println);
+
         System.out.println(count);
 
         sc.close();
