@@ -6,6 +6,7 @@ import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,6 +33,11 @@ public class AppLog {
                 .groupByKey()
                 .foreach(tuple -> System.out.println(tuple._1 + " has " + Iterators.size(tuple._2.iterator())));
 
-        sc.close();
+        sc.parallelize(logMessages)
+                .flatMap(val -> Arrays.asList(val.split(" ")).iterator())
+                .filter(val -> val.length() > 1)
+                .foreach(val -> System.out.println(val));
+
+                sc.close();
     }
 }
