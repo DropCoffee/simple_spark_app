@@ -7,7 +7,6 @@ import scala.Tuple2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class AppLog {
@@ -38,6 +37,6 @@ public class AppLog {
                 .filter(val -> val.length() > 1)
                 .foreach(val -> System.out.println(val));
 
-                sc.close();
+        sc.close();
     }
 }
